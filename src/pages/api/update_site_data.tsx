@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
+import "./models";
 
 const SiteData = mongoose.model("next_stcms_data");
 
