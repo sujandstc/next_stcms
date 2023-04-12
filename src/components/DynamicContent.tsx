@@ -47,7 +47,7 @@ const DynamicContent = ({
         fallback_data
       )}
 
-      {isLogged && (
+      {true && (
         <span
           className=""
           style={{ cursor: "pointer" }}
