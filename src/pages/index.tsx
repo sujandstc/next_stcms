@@ -1,7 +1,7 @@
 import { axios_base_url } from "@/appConstants/config";
+import DynamicContent from "@/components/DynamicContent";
 import axios from "axios";
 import Head from "next/head";
-import DynamicContent from "../components/DynamicContent";
 import Link from "next/link";
 
 // getServerSideProps will run before the home function or any default function. If this fails, client will be redirected to 500 ERROR. See nextls documentation for more...
