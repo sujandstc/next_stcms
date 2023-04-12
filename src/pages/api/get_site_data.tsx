@@ -15,22 +15,17 @@ const get_site_data = async (
 
   if (!mongoConnection) throw "ERROR CONNECTING!";
 
-  const db = mongoConnection.db("next_stcms");
-  const collection = db.collection("next_stcms_datas");
+  const collection = mongoConnection
+    .db("next_stcms")
+    .collection("next_stcms_datas");
 
   const getData = await collection.find().toArray();
-
-  // const getData = await SiteData.find({}).lean().sort("_id");
 
   // Closing connection will save resources.
 
   try {
-    // await mongoConnection.close();
-    // await mongoose.connection.close();
-    console.log("Mongoose connection closed!");
-  } catch (e) {
-    console.log("Err: Mongoose connection closing failed");
-  }
+    await mongoConnection.close();
+  } catch (e) {}
 
   res.status(200).json({
     data: getData,

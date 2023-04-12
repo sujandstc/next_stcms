@@ -21,8 +21,9 @@ const update_site_data = async (
 
     if (!mongoConnection) throw "ERROR CONNECTING!";
 
-    const db = mongoConnection.db("next_stcms");
-    const collection = db.collection("next_stcms_datas");
+    const collection = mongoConnection
+      .db("next_stcms")
+      .collection("next_stcms_datas");
 
     await collection.updateOne(
       {
@@ -35,7 +36,7 @@ const update_site_data = async (
     );
 
     try {
-      // await mongoConnection.close();
+      await mongoConnection.close();
     } catch (e) {}
   }
 

@@ -29,6 +29,8 @@
   overflow: hidden;
   transition: all ease-in-out;
   transition-duration: 300ms;
+  top: 0;
+  left: 0;
 }
 
 .stc_inputs {
