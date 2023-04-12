@@ -9,8 +9,7 @@ const get_site_data = async (
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) => {
-  const connectionString =
-    "mongodb+srv://next_stcms:xuv1NwPKb3ko7urJ@cluster0.vnbfdn6.mongodb.net/next_stcms?retryWrites=true&w=majority";
+  const connectionString = process.env.MONGO_URI;
   if (!connectionString) {
     throw "No mongo connection could be found!";
   }
