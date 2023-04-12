@@ -39,7 +39,7 @@ export default function Home({ data }: any) {
           <h1>
             {" "}
             <DynamicContent
-              dynamic_id="sub_intro"
+              dynamic_id="main"
               data={main_data}
               fallback_data={" Welcome to NEXT_STCMS"}
             />

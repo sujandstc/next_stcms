@@ -1,8 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import mongoose from "mongoose";
-import "./models";
 
-const SiteData = mongoose.model("next_stcms_data");
+import { mongoConnect } from "./mongoConnect";
 
 const update_site_data = async (
   req: NextApiRequest,
@@ -19,32 +17,26 @@ const update_site_data = async (
       throw "No mongo connection could be found!";
     }
 
-    try {
-      await mongoose.connect(connectionString);
+    const mongoConnection = await mongoConnect();
 
-      console.log("Mongoose connected!");
-    } catch (e) {
-      console.log("Err: Mongoose connection failed");
-    }
+    if (!mongoConnection) throw "ERROR CONNECTING!";
 
-    await SiteData.updateOne(
+    const db = mongoConnection.db("next_stcms");
+    const collection = db.collection("next_stcms_datas");
+
+    await collection.updateOne(
       {
         dynamic_id,
       },
-      {
-        data: dynamic_data,
-      },
+      { $set: { data: dynamic_data } },
       {
         upsert: true,
       }
     );
 
     try {
-      await mongoose.connection.close();
-      console.log("Mongoose connection closed!");
-    } catch (e) {
-      console.log("Err: Mongoose connection closing failed");
-    }
+      // await mongoConnection.close();
+    } catch (e) {}
   }
 
   res.status(200).json({
