@@ -27,6 +27,7 @@ const EditingDialog = ({
       setIsUpdating(false);
       onClose();
     } catch (e) {
+      alert("Something went wrong. try again.");
       setIsUpdating(false);
     }
   };
@@ -66,7 +67,7 @@ const EditingDialog = ({
             });
           }}
         >
-          {isUpdating ? "Updaing...." : "Update"}
+          {isUpdating ? "Please wait..." : "Update"}
         </button>
         <button
           className="stc_inputs"

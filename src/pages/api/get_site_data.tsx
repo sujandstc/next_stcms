@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { MongoClient } from "mongodb";
 import { mongoConnect } from "./mongoConnect";
 
 const get_site_data = async (
